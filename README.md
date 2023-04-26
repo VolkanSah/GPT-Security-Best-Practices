@@ -1,5 +1,7 @@
 # ChatGPT Security Best Practices
+![Screenshot ChatGPT Security](gptbestp.png)
 [Source of this 'Best Practices'](https://github.com/VolkanSah/ChatGPT-Security-Best-Practices/) look for updates before you use this tips.
+
 This repository provides guidelines and examples for implementing ChatGPT securely in web applications to prevent security vulnerabilities and protect sensitive data.
 
 ## Table of Contents
