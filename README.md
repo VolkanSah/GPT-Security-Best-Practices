@@ -211,10 +211,10 @@ This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5
 **Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the security best practices section.**
 
 ## Credits
-Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
-Website: [Github](https://volkansah.github.com)
-Become Sponsor: [on Github](https://github.com/sponsors/volkansah)
-update: 26.04.2023
+- Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
+- Website: [Github](https://volkansah.github.com)
+- Become Sponsor: [on Github](https://github.com/sponsors/volkansah)
+- updated: 26.04.2023
 
 
 
