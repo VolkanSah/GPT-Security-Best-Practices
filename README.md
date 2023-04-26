@@ -213,6 +213,7 @@ This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5
 ## Credits
 Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
 Website: [Github](https://volkansah.github.com)
+Become Sponsor: [on Github](https://github.com/sponsors/volkansah)
 update: 26.04.2023
 
 
