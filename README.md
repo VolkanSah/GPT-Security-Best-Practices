@@ -1,4 +1,5 @@
 # ChatGPT Security Best Practices
+[Source of this 'Best Practices'](https://github.com/VolkanSah/ChatGPT-Security-Best-Practices/) look for updates before you use this tips.
 This repository provides guidelines and examples for implementing ChatGPT securely in web applications to prevent security vulnerabilities and protect sensitive data.
 
 ## Table of Contents
@@ -204,7 +205,14 @@ if ($result['httpcode'] == 200) {
 ```
 This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model. The send_chat_completion_request() function sends a request to the API with the input text and receives the generated response. The assistant's reply is then returned to the front-end.
 
-Please note that this example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the security best practices section.
+**Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the security best practices section.**
+
+## Credits
+Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
+Website: [Github](https://volkansah.github.com)
+update: 26.04.2023
+
+
 
 
 
