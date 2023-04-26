@@ -6,15 +6,17 @@ This repository provides guidelines and examples for implementing ChatGPT secure
 - Security Risks and Vulnerabilities
 - Using Environment Variables in PHP
 - Best Practices for Implementing ChatGPT
+- Choosing the Appropriate API Endpoint
+- Code Example
 
 
 ## Introduction
 The purpose of this document is to outline the security risks and vulnerabilities that may arise when implementing ChatGPT in web applications and to provide best practices for mitigating these risks.
 
 ## Security Risks and Vulnerabilities
-Storing sensitive data in JavaScript
-Exposing API keys and request URLs in the browser console
-Best Practices for Implementing ChatGPT
+- Storing sensitive data in JavaScript
+- Exposing API keys and request URLs in the browser console
+
 1. Use server-side languages like PHP for handling sensitive data and functions
 Instead of using JavaScript to handle sensitive data, use server-side languages like PHP. This will keep the data secure and away from the client-side, where it could be accessed through the browser console.
 
@@ -120,6 +122,89 @@ if ($is_rate_limit_ok) {
   // Send a request to ChatGPT API
 
 ```
+
+## Choosing the Appropriate API Endpoint
+When implementing ChatGPT, it's crucial to select the appropriate API endpoint based on your specific use case. OpenAI provides various endpoints for different purposes. Here's a list of the current OpenAI endpoints:
+
+ENDPOINT | MODEL NAME
+-- | --
+/v1/chat/completions | gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301
+/v1/completions | text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001
+/v1/edits | text-davinci-edit-001, code-davinci-edit-001
+/v1/audio/transcriptions | whisper-1
+/v1/audio/translations | whisper-1
+/v1/fine-tunes | davinci, curie, babbage, ada
+/v1/embeddings | text-embedding-ada-002, text-search-ada-doc-001
+/v1/moderations | text-moderation-stable, text-moderation-latest
+
+Cost: Different endpoints have varying costs per token or per request. Choose an endpoint that fits within your budget.
+Performance: Some endpoints offer faster response times, while others are more suited for heavy-duty tasks. Consider the performance needs of your application when selecting an endpoint.
+Specific Use Case: Each endpoint has its own strengths and weaknesses. Evaluate the unique requirements of your application and choose the endpoint that best meets those needs.
+
+## Code Example
+an example of how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model in a web application.
+
+Update the $request_url in your back-end PHP script:
+
+```php
+<?php
+$api_key = getenv('CHATGPT_API_KEY');
+$request_url = "https://api.openai.com/v1/chat/completions";
+```
+Create a function to send a request to the ChatGPT API:
+
+```php
+<?php
+function send_chat_completion_request($api_key, $request_url, $messages) {
+  $ch = curl_init();
+
+  $data = array(
+    'model' => 'gpt-3.5-turbo',
+    'messages' => $messages
+  );
+
+  curl_setopt($ch, CURLOPT_URL, $request_url);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+    "Content-Type: application/json",
+    "Authorization: Bearer $api_key"
+  ));
+
+  $response = curl_exec($ch);
+  $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+  curl_close($ch);
+
+  return array('response' => $response, 'httpcode' => $httpcode);
+}
+Call the send_chat_completion_request() function and process the ChatGPT API response:
+php
+Copy code
+<?php
+$inputText = filter_input(INPUT_POST, 'input', FILTER_SANITIZE_STRING);
+$messages = array(
+  array('role' => 'system', 'content' => 'You are talking to a helpful assistant.'),
+  array('role' => 'user', 'content' => $inputText)
+);
+
+$result = send_chat_completion_request($api_key, $request_url, $messages);
+
+if ($result['httpcode'] == 200) {
+  $json_response = json_decode($result['response'], true);
+  $assistant_reply = $json_response['choices'][0]['message']['content'];
+
+  // Return the response to the front-end
+  echo $assistant_reply;
+} else {
+  // Handle error cases
+  echo "Error: " . $result['response'];
+}
+
+```
+This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model. The send_chat_completion_request() function sends a request to the API with the input text and receives the generated response. The assistant's reply is then returned to the front-end.
+
+Please note that this example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the security best practices section.
 
 
 
