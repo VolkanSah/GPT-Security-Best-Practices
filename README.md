@@ -7,7 +7,7 @@ This repository provides guidelines and examples for implementing ChatGPT secure
 ## Table of Contents
 - [Introduction](#Introduction)
 - [Security Risks and Vulnerabilities](#Security-Risks-and-Vulnerabilities)
-- [Using Environment Variables in PHP](#Using-Environment-Variables in PHP)
+- [Using Environment Variables in PHP](#Using-Environment-Variables-in-PHP)
 - [Best Practices for Implementing ChatGPT](#Best-Practices-for-Implementing-ChatGPT)
 - [Choosing the Appropriate API Endpoint](#Choosing-the-Appropriate-API-Endpoint)
 - [Code Example](#Code Example)
