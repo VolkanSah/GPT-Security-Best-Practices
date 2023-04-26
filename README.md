@@ -4,8 +4,6 @@
 
 As an AI language model enthusiast, I often find myself alarmed by the way sensitive data is carelessly handled in various applications. While the excitement around GPT is understandable, the improper handling of sensitive information poses significant challenges for administrators and security professionals managing servers rented by clients. This document aims to provide best practices for securely implementing ChatGPT in web applications to prevent security vulnerabilities and protect sensitive data.
 
-This repository provides guidelines and examples for implementing ChatGPT securely in web applications to prevent security vulnerabilities and protect sensitive data.
-
 ## Table of Contents
 - [Introduction](#Introduction)
 - [Security Risks and Vulnerabilities](#Security-Risks-and-Vulnerabilities)
