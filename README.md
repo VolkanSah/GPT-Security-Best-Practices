@@ -182,9 +182,9 @@ function send_chat_completion_request($api_key, $request_url, $messages) {
 
   return array('response' => $response, 'httpcode' => $httpcode);
 }
+```
 Call the send_chat_completion_request() function and process the ChatGPT API response:
-php
-Copy code
+```php
 <?php
 $inputText = filter_input(INPUT_POST, 'input', FILTER_SANITIZE_STRING);
 $messages = array(
