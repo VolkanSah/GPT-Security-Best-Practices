@@ -208,7 +208,7 @@ if ($result['httpcode'] == 200) {
 ```
 This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model. The send_chat_completion_request() function sends a request to the API with the input text and receives the generated response. The assistant's reply is then returned to the front-end.
 
-**Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the  [security best practices section.](#Best-Practices-for-Implementing-ChatGPT)** 
+**Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the  [security best practices section.](#Best-Practices-for-Implementing-ChatGPT) and check [Secure Implementation of Artificial Intelligence (AI)](https://github.com/VolkanSah/Implementing-AI-Systems-Whitepaper/tree/main)
 
 ## Credits
 - Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
