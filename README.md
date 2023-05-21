@@ -133,13 +133,13 @@ When implementing ChatGPT, it's crucial to select the appropriate API endpoint b
 ENDPOINT | MODEL NAME
 -- | --
 /v1/chat/completions | gpt-4, gpt-4-0314, gpt-4-32k, gpt-4-32k-0314, gpt-3.5-turbo, gpt-3.5-turbo-0301
-/v1/completions | text-davinci-003, text-davinci-002, text-curie-001, text-babbage-001, text-ada-001
+/v1/completions | ada, ada-code-search-code, ada-code-search-text, ada-search-document, ada-search-query, ada-similarity, babbage, babbage-code-search-code, babbage-code-search-text, babbage-search-document, babbage-search-query, babbage-similarity, code-davinci-edit-001, code-search-ada-code-001, code-search-ada-text-001, code-search-babbage-code-001, code-search-babbage-text-001, curie, curie-instruct-beta, curie-search-document, curie-search-query, curie-similarity, davinci, davinci-instruct-beta, davinci-search-document, davinci-search-query, davinci-similarity, text-ada-001, text-babbage-001, text-curie-001, text-davinci-001, text-davinci-002, text-davinci-003, text-davinci-edit-001, text-embedding-ada-002, text-search-ada-doc-001, text-search-ada-query-001, text-search-babbage-doc-001, text-search-babbage-query-001, text-search-curie-doc-001, text-search-curie-query-001, text-search-davinci-doc-001, text-search-davinci-query-001, text-similarity-ada-001, text-similarity-babbage-001, text-similarity-curie-001, text-similarity-davinci-001
 /v1/edits | text-davinci-edit-001, code-davinci-edit-001
 /v1/audio/transcriptions | whisper-1
 /v1/audio/translations | whisper-1
 /v1/fine-tunes | davinci, curie, babbage, ada
-/v1/embeddings | text-embedding-ada-002, text-search-ada-doc-001
-/v1/moderations | text-moderation-stable, text-moderation-latest
+/v1/embeddings | text-embedding-ada-002, text-search-ada-doc-001, text-search-ada-query-001, text-search-babbage-doc-001, text-search-babbage-query-001, text-search-curie-doc-001, text-search-curie-query-001, text-search-davinci-doc-001, text-search-davinci-query-001
+/v1/moderations | text-moderation-latest, text-moderation-stable
 
 Cost: Different endpoints have varying costs per token or per request. Choose an endpoint that fits within your budget.
 Performance: Some endpoints offer faster response times, while others are more suited for heavy-duty tasks. Consider the performance needs of your application when selecting an endpoint.
