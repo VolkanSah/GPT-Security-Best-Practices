@@ -1,20 +1,20 @@
 # GPT Security Best Practices
-[Source of this GPT Security Best Practices](https://github.com/VolkanSah/ChatGPT-Security-Best-Practices/) look for updates before you use this tips if is forked!
+[Source of this GPT Security Best Practices](https://github.com/VolkanSah/GPT-Security-Best-Practices/) look for updates before you use this tips if is forked!
 
-As an AI language model enthusiast, I often find myself alarmed by the way sensitive data is carelessly handled in various applications. While the excitement around GPT is understandable, the improper handling of sensitive information poses significant challenges for administrators and security professionals managing servers rented by clients. This document aims to provide best practices for securely implementing ChatGPT in web applications to prevent security vulnerabilities and protect sensitive data.
+As an AI language model enthusiast, I often find myself alarmed by the way sensitive data is carelessly handled in various applications. While the excitement around GPT is understandable, the improper handling of sensitive information poses significant challenges for administrators and security professionals managing servers rented by clients. This document aims to provide best practices for securely implementing GPT in web applications to prevent security vulnerabilities and protect sensitive data.
 
 ## Table of Contents
 - [Introduction](#Introduction)
 - [Security Risks and Vulnerabilities](#Security-Risks-and-Vulnerabilities)
 - [Using Environment Variables in PHP](#Using-Environment-Variables-in-PHP)
-- [Best Practices for Implementing ChatGPT](#Best-Practices-for-Implementing-ChatGPT)
+- [Best Practices for Implementing GPT](#Best-Practices-for-Implementing-GPT)
 - [Choosing the Appropriate API Endpoint](#Choosing-the-Appropriate-API-Endpoint)
 - [Code Example](#Code-Example)
 - [Credits](#Credits)
 
 
 ## Introduction
-The purpose of this document is to outline the security risks and vulnerabilities that may arise when implementing ChatGPT in web applications and to provide best practices for mitigating these risks.
+The purpose of this document is to outline the security risks and vulnerabilities that may arise when implementing GPT in web applications and to provide best practices for mitigating these risks.
 
 ## Security Risks and Vulnerabilities
 - Storing sensitive data in JavaScript
@@ -39,7 +39,7 @@ function sendRequest(inputText) {
     type: 'POST',
     data: { input: inputText },
     success: function(response) {
-      // Process and display the response from ChatGPT
+      // Process and display the response from GPT
     },
     error: function() {
       // Handle error cases
@@ -56,7 +56,7 @@ $request_url = "https://api.openai.com/v1/engines/davinci-codex/completions";
 
 $inputText = $_POST['input'];
 
-// Process the input and send a request to ChatGPT
+// Process the input and send a request to GPT
 
 // Return the response to the front-end
 ```
@@ -69,7 +69,7 @@ You can store your API key as an environment variable by adding it to your serve
 Create a .env file in your project's root directory:
 
 ```
-CHATGPT_API_KEY=your_api_key_here
+GPT_API_KEY=your_api_key_here
 ```
 Install the vlucas/phpdotenv package using Composer:
 
@@ -91,14 +91,14 @@ Access the API key from the environment variables:
 
 ```php
 <?php
-$api_key = getenv('CHATGPT_API_KEY');
+$api_key = getenv('GPT_API_KEY');
 $request_url = "https://api.openai.com/v1/engines/davinci-codex/completions";
 ```
 By using environment variables, your API key will be kept secure and separated from your source code. Remember to add the .env file to your .gitignore file to prevent it from being accidentally committed to your public repository.
 
 
 
-## Best Practices for Implementing ChatGPT
+## Best Practices for Implementing GPT
 4. Validate and sanitize user inputs
 Ensure that user inputs are validated and sanitized before processing them. This will prevent potential security vulnerabilities, such as XSS attacks.
 
@@ -112,7 +112,7 @@ $inputText = filter_input(INPUT_POST, 'input', FILTER_SANITIZE_STRING);
 When deploying your web application, ensure that you use HTTPS to encrypt the communication between the client and the server, preventing man-in-the-middle attacks.
 
 6. Limit API request rate
-To prevent abuse of your ChatGPT API key and control costs, implement rate-limiting on your server-side code. This will limit the number of requests made to the ChatGPT API within a specified time frame.
+To prevent abuse of your GPT API key and control costs, implement rate-limiting on your server-side code. This will limit the number of requests made to the GPT API within a specified time frame.
 
 Back-end (PHP)
 ```php
@@ -122,12 +122,12 @@ Back-end (PHP)
 
 // Only proceed with the request if the rate limit is not exceeded
 if ($is_rate_limit_ok) {
-  // Send a request to ChatGPT API
+  // Send a request to GPT API
 
 ```
 
 ## Choosing the Appropriate API Endpoint
-When implementing ChatGPT, it's crucial to select the appropriate API endpoint based on your specific use case. OpenAI provides various endpoints for different purposes. Here's a list of the current OpenAI endpoints:
+When implementing GPT, it's crucial to select the appropriate API endpoint based on your specific use case. OpenAI provides various endpoints for different purposes. Here's a list of the current OpenAI endpoints:
 
 ENDPOINT | MODEL NAME
 -- | --
@@ -151,10 +151,10 @@ Update the $request_url in your back-end PHP script:
 
 ```php
 <?php
-$api_key = getenv('CHATGPT_API_KEY');
+$api_key = getenv('GPT_API_KEY');
 $request_url = "https://api.openai.com/v1/chat/completions";
 ```
-Create a function to send a request to the ChatGPT API:
+Create a function to send a request to the GPT API:
 
 ```php
 <?php
@@ -182,7 +182,7 @@ function send_chat_completion_request($api_key, $request_url, $messages) {
   return array('response' => $response, 'httpcode' => $httpcode);
 }
 ```
-Call the send_chat_completion_request() function and process the ChatGPT API response:
+Call the send_chat_completion_request() function and process the GPT API response:
 ```php
 <?php
 $inputText = filter_input(INPUT_POST, 'input', FILTER_SANITIZE_STRING);
@@ -207,7 +207,7 @@ if ($result['httpcode'] == 200) {
 ```
 This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model. The send_chat_completion_request() function sends a request to the API with the input text and receives the generated response. The assistant's reply is then returned to the front-end.
 
-**Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the  [security best practices section.](#Best-Practices-for-Implementing-ChatGPT) and check [Secure Implementation of Artificial Intelligence (AI)](https://github.com/VolkanSah/Implementing-AI-Systems-Whitepaper/tree/main)
+**Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the  [security best practices section.](#Best-Practices-for-Implementing-GPT) and check [Secure Implementation of Artificial Intelligence (AI)](https://github.com/VolkanSah/Implementing-AI-Systems-Whitepaper/tree/main)
 
 ## Credits
 - Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
