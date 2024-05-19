@@ -215,7 +215,7 @@ This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5
 - Become Sponsor: [on Github](https://github.com/sponsors/volkansah)
 - [Source](https://github.com/VolkanSah/GPT-Security-Best-Practices) | [Webview](https://volkansah.github.io/GPT-Security-Best-Practices)
 #### updated: 
-26.04.2023
+19.05.2024
 
 
 
