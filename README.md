@@ -1,5 +1,6 @@
 # GPT Security Best Practices
-[Source of this GPT Security Best Practices](https://github.com/VolkanSah/GPT-Security-Best-Practices/) look for updates before you use this tips if is forked!
+
+[Source of this GPT Security Best Practices](https://github.com/VolkanSah/GPT-Security-Best-Practices/) look for updates before you use these tips if it is forked!
 
 As an AI language model enthusiast, I often find myself alarmed by the way sensitive data is carelessly handled in various applications. While the excitement around GPT is understandable, the improper handling of sensitive information poses significant challenges for administrators and security professionals managing servers rented by clients. This document aims to provide best practices for securely implementing GPT in web applications to prevent security vulnerabilities and protect sensitive data.
 
@@ -28,6 +29,7 @@ Instead of using JavaScript to handle sensitive data, use server-side languages 
 $api_key = "your_api_key_here";
 $request_url = "https://api.openai.com/v1/engines/davinci-codex/completions";
 ```
+
 2. Use AJAX for communication between the front-end and back-end
 With AJAX, you can asynchronously send data to and retrieve data from the server without exposing sensitive information in the browser console.
 
@@ -47,9 +49,9 @@ function sendRequest(inputText) {
   });
 }
 ```
+
 Back-end (PHP)
 ```php
-
 <?php
 $api_key = "your_api_key_here";
 $request_url = "https://api.openai.com/v1/engines/davinci-codex/completions";
@@ -60,6 +62,7 @@ $inputText = $_POST['input'];
 
 // Return the response to the front-end
 ```
+
 3. Secure your API key
 Store your API key in a secure location, such as an environment variable, and not in the source code. This will prevent accidental exposure of the key in public repositories.
 
@@ -71,11 +74,13 @@ Create a .env file in your project's root directory:
 ```
 GPT_API_KEY=your_api_key_here
 ```
+
 Install the vlucas/phpdotenv package using Composer:
 
 ```
 composer require vlucas/phpdotenv
 ```
+
 Load the environment variables from the .env file in your PHP script:
 
 ```php
@@ -87,6 +92,7 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 ```
+
 Access the API key from the environment variables:
 
 ```php
@@ -94,9 +100,8 @@ Access the API key from the environment variables:
 $api_key = getenv('GPT_API_KEY');
 $request_url = "https://api.openai.com/v1/engines/davinci-codex/completions";
 ```
+
 By using environment variables, your API key will be kept secure and separated from your source code. Remember to add the .env file to your .gitignore file to prevent it from being accidentally committed to your public repository.
-
-
 
 ## Best Practices for Implementing GPT
 4. Validate and sanitize user inputs
@@ -108,6 +113,7 @@ Back-end (PHP)
 // Sanitize user input before processing
 $inputText = filter_input(INPUT_POST, 'input', FILTER_SANITIZE_STRING);
 ```
+
 5. Use HTTPS for secure communication
 When deploying your web application, ensure that you use HTTPS to encrypt the communication between the client and the server, preventing man-in-the-middle attacks.
 
@@ -123,11 +129,17 @@ Back-end (PHP)
 // Only proceed with the request if the rate limit is not exceeded
 if ($is_rate_limit_ok) {
   // Send a request to GPT API
-
+}
 ```
 
+7. Use Content Security Policy (CSP)
+Implement CSP headers to prevent XSS attacks and other vulnerabilities by controlling the resources the user agent is allowed to load for a given page.
+
+8. Use Security Headers
+Implement security headers such as X-Frame-Options, X-Content-Type-Options, and others to protect your application from common security vulnerabilities.
+
 ## Choosing the Appropriate API Endpoint
-When implementing GPT, it's crucial to select the appropriate API endpoint based on your specific use case. OpenAI provides various endpoints for different purposes. Here's a list of the current OpenAI endpoints:
+When implementing GPT, it's crucial to select the appropriate API endpoint based on your specific use case. OpenAI provides various endpoints for different purposes. Here are the current OpenAI endpoints:
 
 ENDPOINT | MODEL NAME
 -- | --
@@ -140,12 +152,17 @@ ENDPOINT | MODEL NAME
 /v1/embeddings | text-embedding-ada-002, text-search-ada-doc-001, text-search-ada-query-001, text-search-babbage-doc-001, text-search-babbage-query-001, text-search-curie-doc-001, text-search-curie-query-001, text-search-davinci-doc-001, text-search-davinci-query-001
 /v1/moderations | text-moderation-latest, text-moderation-stable
 
-Cost: Different endpoints have varying costs per token or per request. Choose an endpoint that fits within your budget.
-Performance: Some endpoints offer faster response times, while others are more suited for heavy-duty tasks. Consider the performance needs of your application when selecting an endpoint.
-Specific Use Case: Each endpoint has its own strengths and weaknesses. Evaluate the unique requirements of your application and choose the endpoint that best meets those needs.
+### Cost
+Different endpoints have varying costs per token or per request. Choose an endpoint that fits within your budget.
+
+### Performance
+Some endpoints offer faster response times, while others are more suited for heavy-duty tasks. Consider the performance needs of your application when selecting an endpoint.
+
+### Specific Use Case
+Each endpoint has its own strengths and weaknesses. Evaluate the unique requirements of your application and choose the endpoint that best meets those needs.
 
 ## Code Example
-an example of how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model in a web application.
+An example of how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model in a web application.
 
 Update the $request_url in your back-end PHP script:
 
@@ -154,6 +171,7 @@ Update the $request_url in your back-end PHP script:
 $api_key = getenv('GPT_API_KEY');
 $request_url = "https://api.openai.com/v1/chat/completions";
 ```
+
 Create a function to send a request to the GPT API:
 
 ```php
@@ -182,7 +200,9 @@ function send_chat_completion_request($api_key, $request_url, $messages) {
   return array('response' => $response, 'httpcode' => $httpcode);
 }
 ```
+
 Call the send_chat_completion_request() function and process the GPT API response:
+
 ```php
 <?php
 $inputText = filter_input(INPUT_POST, 'input', FILTER_SANITIZE_STRING);
@@ -203,19 +223,30 @@ if ($result['httpcode'] == 200) {
   // Handle error cases
   echo "Error: " . $result['response'];
 }
-
 ```
+
 This example shows how to use the /v1/chat/completions endpoint with the gpt-3.5-turbo model. The send_chat_completion_request() function sends a request to the API with the input text and receives the generated response. The assistant's reply is then returned to the front-end.
 
-**Please note that this code example is for a basic web application, and you should consider additional security measures (such as rate-limiting) as discussed in the  [security best practices section.](#Best-Practices-for-Implementing-GPT) and check [Secure Implementation of Artificial Intelligence (AI)](https://github.com/VolkanSah/Implementing-AI-Systems-Whitepaper/tree/main)
+## Other Note
+Additional resources and notes that might be helpful for understanding and implementing the best practices mentioned in this document.
 
-## Credits
-- Copyright: [S. Volkan Kücükbudak](https://github.com/volkansah)
-- Website: [Github](https://volkansah.github.com)
-- Become Sponsor: [on Github](https://github.com/sponsors/volkansah)
-- [Source](https://github.com/VolkanSah/GPT-Security-Best-Practices) | [Webview](https://volkansah.github.io/GPT-Security-Best-Practices)
-#### updated: 
-19.05.2024
+- [Secure Implementation of Artificial Intelligence (AI)](https://github.com/VolkanSah/Implementing-AI-Systems-Whitepaper/tree/main)
+
+### Credits
+S. Volkan Kücükbudak
+
+
+- ## Your Support
+If you find this project useful and want to support it, there are several ways to do so:
+
+- If you find the white paper helpful, please ⭐ it on GitHub. This helps make the project more visible and reach more people.
+- Become a Follower: If you're interested in updates and future improvements, please follow my GitHub account. This way you'll always stay up-to-date.
+- Learn more about my work: I invite you to check out all of my work on GitHub and visit my developer site https://volkansah.github.io. Here you will find detailed information about me and my projects.
+- Share the project: If you know someone who could benefit from this project, please share it. The more people who can use it, the better.
+**If you appreciate my work and would like to support it, please visit my [GitHub Sponsor page](https://github.com/sponsors/volkansah). Any type of support is warmly welcomed and helps me to further improve and expand my work.**
+
+Thank you for your support! ❤️
+
 
 
 
